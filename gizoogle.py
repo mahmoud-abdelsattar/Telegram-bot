@@ -13,7 +13,7 @@ def text(input_text) :
     resp = requests.post(target_url, data=params)
     # the html returned is in poor form normally.
     soup_input = re.sub("/name=translatetext[^>]*>/", 'name="translatetext" >', resp.text)
-    soup = bs4.BeautifulSoup(soup_input, "lxml")
+    soup = bs4.BeautifulSoup(soup_input, "html.parser")#parsers like
     giz = soup.find_all(text=True)
     giz_text = giz[37].strip("\r\n")  # Hacky, but consistent.
     return giz_text
