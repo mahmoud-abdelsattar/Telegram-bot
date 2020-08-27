@@ -26,13 +26,13 @@ while True:
     if updates:
         for item in updates:
             update_id = item["update_id"]
-            try:
-                if 'channel_post' in update_id:
-                    message = str(item["channel_post"]["text"])
-                else:
-                    message = str(item["message"]["text"])
-            except:
-                message = "ok"
+            # try:
+            if 'channel_post' in update_id:
+                message = str(item["channel_post"]["text"])
+            else:
+                message = str(item["message"]["text"])
+            # except:
+            #   message = "ok"
             try:
                 from_ = item["message"]["from"]["id"]
             except:
