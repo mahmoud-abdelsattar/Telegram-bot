@@ -30,7 +30,11 @@ while True:
             if 'channel_post' in item:
                 message = str(item["channel_post"]["text"])
             else:
-                message = str(item["message"]["text"])
+                if 'text' in item['message']:
+                    message = str(item["message"]["text"])
+                else:
+                    message = str(item["message"]["sticker"])
+
             # except:
             #   message = "ok"
             try:
