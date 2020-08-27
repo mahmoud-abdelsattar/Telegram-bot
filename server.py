@@ -14,8 +14,8 @@ def reverse(s):
 def make_reply(msg):
     reply = None
     if msg is not None:
-        reply = reverse(msg)  # "ok"
-        # reply = gizoogle.text(msg)
+        #reply = reverse(msg)
+        reply = gizoogle.text(msg)
     return reply
 
 
