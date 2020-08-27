@@ -3,12 +3,17 @@ import gizoogle
 
 bot = telegram_chatbot("config.cfg")
 
+def reverse(s):
+  str = ""
+  for i in s:
+    str = i + str
+  return str
 
 def make_reply(msg):
     reply = None
     if msg is not None:
-        #reply="ok"
-        reply = gizoogle.text(msg)
+        reply="ok"
+        #reply = gizoogle.text(msg)
     return reply
 
 
