@@ -32,7 +32,7 @@ while True:
                 else:
                     message = str(item["message"]["text"])
             except:
-                message = ""
+                message = "ok"
             try:
                 from_ = item["message"]["from"]["id"]
             except:
