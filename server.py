@@ -12,7 +12,7 @@ def reverse(s):
 def make_reply(msg):
     reply = None
     if msg is not None:
-        reply="ok"
+        reply=reverse(msg)#"ok"
         #reply = gizoogle.text(msg)
     return reply
 
@@ -25,9 +25,12 @@ while True:
         for item in updates:
             update_id = item["update_id"]
             try:
-                message = str(item["message"]["text"])
+                message = str(item["channel_post"]["text"])
             except:
-                message = None
-            from_ = item["message"]["from"]["id"]
+                message = str(item["message"]["text"])
+            try:
+                from_ = item["message"]["from"]["id"]
+            except:
+                from_ = item["channel_post"]["chat"]["id"]
             reply = make_reply(message)
             bot.send_message(reply, from_)
