@@ -3,17 +3,19 @@ import gizoogle
 
 bot = telegram_chatbot("config.cfg")
 
+
 def reverse(s):
-  str = ""
-  for i in s:
-    str = i + str
-  return str
+    str = ""
+    for i in s:
+        str = i + str
+    return str
+
 
 def make_reply(msg):
     reply = None
     if msg is not None:
-        reply=reverse(msg) #"ok"
-        #reply = gizoogle.text(msg)
+        reply = reverse(msg)  # "ok"
+        # reply = gizoogle.text(msg)
     return reply
 
 
@@ -25,9 +27,12 @@ while True:
         for item in updates:
             update_id = item["update_id"]
             try:
-                message = str(item["channel_post"]["text"])
+                if 'channel_post' in update_id:
+                    message = str(item["channel_post"]["text"])
+                else:
+                    message = str(item["message"]["text"])
             except:
-                message = str(item["message"]["text"])
+                message = ""
             try:
                 from_ = item["message"]["from"]["id"]
             except:
