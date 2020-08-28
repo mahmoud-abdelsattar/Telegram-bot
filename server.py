@@ -1,7 +1,15 @@
+import ntpath
+import os
 from bot import telegram_chatbot
 import gizoogle
 
-bot = telegram_chatbot("config.cfg")
+path = os.getcwd() + '\\config.cfg'
+config_name = ntpath.basename(path)
+
+bot = telegram_chatbot(config_name)
+
+
+# bot = telegram_chatbot("config.cfg")
 
 
 def reverse(s):
@@ -15,7 +23,7 @@ def make_reply(msg):
     reply = None
     if msg is not None:
         reply = reverse(msg)
-        #reply = gizoogle.text(msg)
+        # reply = gizoogle.text(msg)
     return reply
 
 
@@ -28,7 +36,10 @@ while True:
             update_id = item["update_id"]
             # try:
             if 'channel_post' in item:
-                message = str(item["channel_post"]["text"])
+                if 'text' in item['channel_post']:
+                    message = str(item["channel_post"]["text"])
+                else:
+                    message = str(item["channel_post"]["sticker"])
             else:
                 if 'text' in item['message']:
                     message = str(item["message"]["text"])
